@@ -1,19 +1,24 @@
-rk4 = new Framer.SpringRK4Animator
-	friction: 5
-	tension: 90
+# Import file "test" (sizes and positions are scaled 1:2)
+# sketch = Framer.Importer.load("imported/test@2x")
 
-values = rk4.values(1/60*2)
+# scroll = PageComponent.wrap(sketch.main)
+scroll = new PageComponent
+	size: Screen.size
 
-# Draw a stupid graph
-
-graph = new Layer
-	point: Align.center
-
-for index, value of values
+scroll.addPage(
 	new Layer
-		parent: graph
-		size: 6
-		borderRadius: 6
-		x: parseInt(index) * (graph.width / values.length)
-		y: value * (graph.height / 2)
-		
+		width: Screen.width
+		height: Screen.height * 2
+		)
+scroll.addPage(
+	new Layer
+		size: Screen.size
+		backgroundColor: "red"
+		)
+
+# page = new PageComponent
+# 	size: Screen.size
+# 
+# page.addPage(sketch.main)
+
+# print sketch.main.image 
